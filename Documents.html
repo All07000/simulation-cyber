@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Documents</title>
+
+<style>
+body {
+    margin: 0;
+    background-color: black;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    color: red;
+}
+
+.screen {
+    margin-top: 15%;
+}
+
+#screen2 {
+    display: none;
+}
+
+.blink {
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0% {opacity: 1;}
+    50% {opacity: 0.3;}
+    100% {opacity: 1;}
+}
+
+button {
+    margin-top: 20px;
+    padding: 10px 20px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- ÉCRAN 1 -->
+<div id="screen1" class="screen">
+
+    <h1 class="blink">⚠️ SYSTÈME COMPROMIS</h1>
+
+    <p style="color:white;">Un logiciel malveillant est en cours d'exécution.</p>
+
+    <p style="color:yellow;">
+        Vos fichiers sont en cours de chiffrement...
+    </p>
+
+    <p id="timer" style="font-size:30px;"></p>
+
+    <button onclick="goFullscreen()">Cliquez ici pour sortir</button>
+
+</div>
+
+<!-- ÉCRAN 2 -->
+<div id="screen2" class="screen">
+
+    <h1>⚠️ VOS FICHIERS SONT CHIFFRÉS</h1>
+
+    <p style="color:white;">
+        Tous vos documents sont désormais inaccessibles.
+    </p>
+
+    <p style="color:yellow;">
+        Une clé unique est nécessaire pour restaurer vos données.
+    </p>
+
+    <p style="color:white;">
+        Montant requis : 500€
+    </p>
+
+    <p style="color:red;">
+        Délai limité. Toute tentative de récupération entraînera une perte définitive.
+    </p>
+
+    <p style="color:gray; margin-top:20px;">
+        ID machine : X3F-92KD-88QZ
+    </p>
+
+    <p style="color:white; margin-top:20px;">
+        Instructions envoyées via canal sécurisé.
+    </p>
+
+</div>
+
+<script>
+
+// bouton plein écran
+function goFullscreen() {
+    let elem = document.documentElement;
+    if (elem.requestFullscreen) {
+        elem.requestFullscreen();
+    }
+}
+
+// compte à rebours auto
+let count = 10;
+let timer = document.getElementById("timer");
+
+let interval = setInterval(function() {
+
+    if (count > 0) {
+        timer.innerText = "Chiffrement : " + count + " secondes restantes";
+        count--;
+    } else {
+        clearInterval(interval);
+
+        document.getElementById("screen1").style.display = "none";
+        document.getElementById("screen2").style.display = "block";
+    }
+
+}, 1000);
+
+</script>
+
+</body>
+</html>
